@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://tarunreddybabi-s-workspace-30919f.ap-southeast-2.xata.sh/db/screen_recorder",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
