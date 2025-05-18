@@ -26,6 +26,8 @@ declare interface FormFieldProps {
   placeholder?: string;
   as?: "input" | "textarea" | "select";
   options?: Array<{ value: string; label: string }>;
+  error?: string;
+  required?: boolean;
 }
 
 declare interface FileInputProps {
@@ -38,6 +40,8 @@ declare interface FileInputProps {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   onReset: () => void;
   type: "video" | "image";
+  error?: string;
+  required?: boolean;
 }
 
 declare interface TranscriptEntry {
@@ -111,7 +115,7 @@ declare interface ImageWithFallbackProps extends Omit<ImageProps, "src"> {
   src: string | null;
 }
 
-type Visibility = "public" | "private" ;
+type Visibility = "public" | "private";
 
 declare interface VideoDetails {
   videoId: string;

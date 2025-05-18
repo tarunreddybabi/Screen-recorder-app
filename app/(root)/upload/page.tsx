@@ -161,6 +161,8 @@ const UploadPage = () => {
           value={formData.title}
           onChange={handleInputChange}
           placeholder="Enter a clear and concise video title"
+          required={true}
+          error="Title is required"
         />
 
         <FormField
@@ -168,8 +170,11 @@ const UploadPage = () => {
           label="Description"
           value={formData.description}
           onChange={handleInputChange}
-          placeholder="Briefly describe what this video is about"
+          placeholder="Briefly describe what this video  is about"
           as="textarea"
+          required={true}
+          error="Description is required"
+
         />
 
         <FileInput
@@ -182,6 +187,9 @@ const UploadPage = () => {
           onChange={video.handleFileChange}
           onReset={video.resetFile}
           type="video"
+          required={true}
+          error="Video is required"
+
         />
 
         <FileInput
@@ -194,6 +202,8 @@ const UploadPage = () => {
           onChange={thumbnail.handleFileChange}
           onReset={thumbnail.resetFile}
           type="image"
+          required={true}
+          error="Thumbnail is required"
         />
 
         <FormField
@@ -206,6 +216,8 @@ const UploadPage = () => {
             { value: "public", label: "Public" },
             { value: "private", label: "Private" },
           ]}
+          required={true}
+          error="Visibility is required"
         />
 
         <button type="submit" disabled={isSubmitting} className="submit-button">

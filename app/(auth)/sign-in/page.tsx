@@ -1,11 +1,24 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 import { authClient } from "@/lib/auth-client";
 
 const SignIn = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSignIn = async () => {
+    setLoading(true);
+    try {
+      await authClient.signIn.social({ provider: "google" });
+    } catch (error) {
+      console.error("Sign-in error:", error);
+      setLoading(false);
+    }
+  };
+
   return (
     <main className="sign-in">
       <aside className="testimonial">
@@ -33,8 +46,9 @@ const SignIn = () => {
               ))}
             </figure>
             <p>
-            Glimpse makes screen recording easy. From quick walkthroughs to
-              full presentations, it&apos;s fast, smooth, and shareable in seconds
+              Glimpse makes screen recording easy. From quick walkthroughs to
+              full presentations, it&apos;s fast, smooth, and shareable in
+              seconds
             </p>
             <article>
               <Image
@@ -69,20 +83,22 @@ const SignIn = () => {
             time!
           </p>
 
-          <button
-            onClick={async () => {
-              return await authClient.signIn.social({
-                provider: "google",
-              });
-            }}
-          >
-            <Image
-              src="/assets/icons/google.svg"
-              alt="Google Icon"
-              width={22}
-              height={22}
-            />
-            <span>Sign in with Google</span>
+          <button onClick={handleSignIn} disabled={loading}>
+            {loading ? (
+              <>
+                <span>Signing in...</span>
+              </>
+            ) : (
+              <>
+                <Image
+                  src="/assets/icons/google.svg"
+                  alt="Google Icon"
+                  width={22}
+                  height={22}
+                />
+                <span>Sign in with Google</span>
+              </>
+            )}
           </button>
         </section>
       </aside>

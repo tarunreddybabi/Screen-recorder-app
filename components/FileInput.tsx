@@ -10,9 +10,14 @@ const FileInput = ({
   onChange,
   onReset,
   type,
+  error,
+  required = true,
 }: FileInputProps) => (
   <section className="file-input">
-    <label htmlFor={id}>{label}</label>
+    <label htmlFor={id}>
+      {label}
+      {required && <span className="text-red-500"> *</span>}
+    </label>
     <input
       type="file"
       id={id}
@@ -30,7 +35,7 @@ const FileInput = ({
           width={24}
           height={24}
         />
-        <p>click to upload your {id}</p>
+        <p>Click to upload your {id}</p>
       </figure>
     ) : (
       <div>
@@ -50,6 +55,8 @@ const FileInput = ({
         <p>{file?.name}</p>
       </div>
     )}
+
+    {error && <p className="error-text">{error}</p>}
   </section>
 );
 

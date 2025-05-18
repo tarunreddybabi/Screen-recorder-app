@@ -7,9 +7,15 @@ const FormField = ({
   placeholder,
   as = "input",
   options = [],
+  error,
+  required = false,
 }: FormFieldProps) => (
   <div className="form-field">
-    <label htmlFor={id}>{label}</label>
+    <label htmlFor={id}>
+      {label}
+      {required && <span className="text-red-500"> *</span>}
+    </label>
+
     {as === "textarea" ? (
       <textarea
         id={id}
@@ -17,9 +23,16 @@ const FormField = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        required={required}
       />
     ) : as === "select" ? (
-      <select id={id} name={id} value={value} onChange={onChange}>
+      <select
+        id={id}
+        name={id}
+        value={value}
+        onChange={onChange}
+        required={required}
+      >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -34,8 +47,11 @@ const FormField = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        required={required}
       />
     )}
+
+    {error && <p className="error-text">{error}</p>}
   </div>
 );
 
